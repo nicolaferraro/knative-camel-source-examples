@@ -1,0 +1,16 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: trigger
+spec:
+  filter:
+    attributes:
+      type: ""
+
+      # # To filter a specific type:
+      # type: hello.world
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: dumper

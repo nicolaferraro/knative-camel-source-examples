@@ -1,0 +1,25 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: CamelSource
+metadata:
+  name: mqtt
+spec:
+  source:
+    integration:
+     replicas: 2
+    flow:
+      from:
+        uri: paho:mytopic
+        parameters:
+          brokerUrl: tcp://mosquitto:1883
+          clientId: mqtt-knative-bridge
+        steps:
+          - set-header:
+              name: ce-type
+              constant: mqtt
+          - log:
+              message: "Forwarding: ${body}"
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1alpha1
+      kind: Broker
+      name: default

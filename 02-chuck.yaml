@@ -1,0 +1,31 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: CamelSource
+metadata:
+  name: chuck
+spec:
+  source:
+    integration:
+      dependencies:
+        - camel:jackson
+    flow:
+      from:
+        uri: timer:tick
+        parameters:
+          period: 10s
+        steps:
+          - to: http://api.icndb.com/jokes/random?limitTo=[nerdy]
+          - unmarshal:
+              json: {}
+          - transform:
+              simple: "${body[value][joke]}"
+          - set-header:
+              name: ce-type
+              constant: chuck.norris
+          - set-header:
+              name: Content-Type
+              constant: text/plain
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1alpha1
+      kind: Broker
+      name: default
