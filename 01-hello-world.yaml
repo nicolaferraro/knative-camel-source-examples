@@ -1,4 +1,4 @@
-apiVersion: sources.eventing.knative.dev/v1alpha1
+apiVersion: sources.knative.dev/v1alpha1
 kind: CamelSource
 metadata:
   name: hello-world
@@ -15,6 +15,6 @@ spec:
               constant: hello.world
   sink:
     ref:
-      apiVersion: eventing.knative.dev/v1alpha1
+      apiVersion: eventing.knative.dev/v1
       kind: Broker
       name: default

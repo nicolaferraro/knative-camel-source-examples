@@ -1,14 +1,9 @@
-apiVersion: eventing.knative.dev/v1alpha1
+apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
   name: trigger
 spec:
-  filter:
-    attributes:
-      type: ""
-
-      # # To filter a specific type:
-      # type: hello.world
+  broker: default
   subscriber:
     ref:
       apiVersion: serving.knative.dev/v1
