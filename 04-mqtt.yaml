@@ -1,4 +1,4 @@
-apiVersion: sources.eventing.knative.dev/v1alpha1
+apiVersion: sources.knative.dev/v1alpha1
 kind: CamelSource
 metadata:
   name: mqtt
@@ -20,6 +20,6 @@ spec:
               message: "Forwarding: ${body}"
   sink:
     ref:
-      apiVersion: eventing.knative.dev/v1alpha1
+      apiVersion: eventing.knative.dev/v1
       kind: Broker
       name: default

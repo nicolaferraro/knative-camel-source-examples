@@ -12,8 +12,8 @@ You need the following operators installed in global mode (you can use OperatorH
 
 - OpenShift Serverless
 - Knative Eventing
-- Camel K
-- Knative Apache Camel Sources
+- [Camel K](https://github.com/apache/camel-k)
+- [Knative Apache Camel Sources](https://github.com/knative-sandbox/eventing-camel)
 
 After you've installed the required operators, you can create a sample project with the command:
 
@@ -82,7 +82,7 @@ You first need to create a simple mosquitto broker and a sample message producer
 
 ```
 oc apply -f mqtt-broker/mosquitto.yaml
-kamel run mqtt-broker/sample-sender.yaml
+kamel run mqtt-broker/sample-sender.groovy
 ```
 
 Them, to create the source:
